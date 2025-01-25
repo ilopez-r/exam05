@@ -1,11 +1,11 @@
 #pragma once
 # include "ATarget.hpp"
 
-class Dummy : public ATarget
+class BrickWall : public ATarget
 {
 	public:
-		Dummy();
-		~Dummy();
+		BrickWall();
+		~BrickWall();
 		ATarget* clone() const;
 };
 

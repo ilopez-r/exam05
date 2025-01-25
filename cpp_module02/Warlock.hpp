@@ -2,7 +2,7 @@
 # include <iostream>
 # include "ASpell.hpp"
 # include "ATarget.hpp"
-# include <map>
+# include "SpellBook.hpp"
 
 class ASpell;
 class ATarget;
@@ -25,6 +25,6 @@ class Warlock
 		Warlock& operator=(const Warlock &other);
 		std::string _name;
 		std::string _title;
-		std::map<std::string, ASpell*> _spells;
+		SpellBook _spells;
 };
 

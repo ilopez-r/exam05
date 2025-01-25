@@ -24,9 +24,6 @@ Warlock& Warlock::operator=(const Warlock &other)
 Warlock::~Warlock()
 {
 	std::cout << _name << ": My job here is done!\n";
-	for (std::map<std::string, ASpell *>::iterator it = _spells.begin(); it != _spells.end(); it++)
-		delete (it->second);
-	_spells.clear();
 }
 
 const std::string & Warlock::getName() const
@@ -51,19 +48,17 @@ void Warlock::introduce() const
 
 void Warlock::learnSpell(ASpell *spell)
 {
-	if (spell)
-		_spells[spell->getName()] = spell->clone();
+	_spells.learnSpell(spell);
 }
 
 void Warlock::forgetSpell(std::string spell)
 {
-	if (_spells.find(spell) != _spells.end())
-		_spells.erase(_spells.find(spell));
+	_spells.forgetSpell(spell);
 }
 
 void Warlock::launchSpell(std::string spell, ATarget &target)
 {
-	if (_spells.find(spell) != _spells.end())
-		_spells[spell]->launch(target);
+	if (_spells.createSpell(spell))
+		_spells.createSpell(spell)->launch(target);
 }
 

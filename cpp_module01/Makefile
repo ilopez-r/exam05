@@ -7,7 +7,11 @@ FLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -rf
 
 SRCS = main.cpp\
-		Warlock.cpp\
+	Warlock.cpp\
+	ASpell.cpp\
+	ATarget.cpp\
+	Fwoosh.cpp\
+	Dummy.cpp\
 
 OBJS = $(SRCS:.cpp=.o)
 
