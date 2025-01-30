@@ -1,6 +1,6 @@
 #pragma once
-# include "ASpell.hpp"
 # include <iostream>
+# include "ASpell.hpp"
 
 class ASpell;
 
@@ -9,14 +9,13 @@ class ATarget
 	public:
 		ATarget();
 		ATarget(std::string type);
-		virtual ~ATarget();
 		ATarget(const ATarget &copy);
-		ATarget& operator=(const ATarget &other);
+		ATarget& operator=(const ATarget &copy);
+		virtual ~ATarget();
 		const std::string &getType() const;
-		virtual ATarget* clone() const = 0;
+		virtual ATarget *clone() const = 0;
 		void getHitBySpell(const ASpell &spell) const;
-		
-	protected:
+	private:
 		std::string _type;
 };
 

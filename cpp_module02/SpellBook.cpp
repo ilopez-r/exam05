@@ -2,15 +2,15 @@
 
 SpellBook::SpellBook(){}
 
-
 SpellBook::SpellBook(const SpellBook &copy)
 {
-	*this = copy;
+	_spellbook = copy._spellbook;
 }
 
-SpellBook& SpellBook::operator=(const SpellBook &other)
+SpellBook& SpellBook::operator=(const SpellBook &copy)
 {
-	_spells = other._spells;
+	if (this != &copy) 
+		_spellbook = copy._spellbook;
 	return (*this);
 }
 
@@ -19,20 +19,16 @@ SpellBook::~SpellBook(){}
 void SpellBook::learnSpell(ASpell *spell)
 {
 	if (spell)
-		_spells[spell->getName()] = spell;
+		_spellbook[spell->getName()] = spell;
 }
 
-void SpellBook::forgetSpell(std::string const &spell)
+void SpellBook::forgetSpell(std::string const &spellname)
 {
-	if (_spells.find(spell) != _spells.end())
-		_spells.erase(_spells.find(spell));
+	if (_spellbook.find(spellname) != _spellbook.end())
+		_spellbook.erase(_spellbook.find(spellname));
 }
 
-ASpell* SpellBook::createSpell(std::string const &spell)
+ASpell* SpellBook::createSpell(std::string const &spellname)
 {
-	ASpell* tmp = NULL;
-	if (_spells.find(spell) != _spells.end())
-		tmp = _spells[spell];
-	return (tmp);
+	return (_spellbook[spellname]);
 }
-

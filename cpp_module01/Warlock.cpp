@@ -11,22 +11,23 @@ Warlock::Warlock(std::string name, std::string title)
 
 Warlock::Warlock(const Warlock &copy)
 {
-	*this = copy;
+	_name = copy._name;
+	_title = copy._name;
 }
 
-Warlock& Warlock::operator=(const Warlock &other)
+Warlock& Warlock::operator=(const Warlock &copy)
 {
-	_name = other._name;
-	_title = other._title;
+	if (this != &copy)
+	{
+		_name = copy._name;
+		_title = copy._name;
+	}
 	return (*this);
 }
 
 Warlock::~Warlock()
 {
 	std::cout << _name << ": My job here is done!\n";
-	for (std::map<std::string, ASpell *>::iterator it = _spells.begin(); it != _spells.end(); it++)
-		delete (it->second);
-	_spells.clear();
 }
 
 const std::string & Warlock::getName() const
@@ -52,18 +53,18 @@ void Warlock::introduce() const
 void Warlock::learnSpell(ASpell *spell)
 {
 	if (spell)
-		_spells[spell->getName()] = spell->clone();
+		_spellbook[spell->getName()] = spell;
 }
 
-void Warlock::forgetSpell(std::string spell)
+void Warlock::forgetSpell(std::string spellname)
 {
-	if (_spells.find(spell) != _spells.end())
-		_spells.erase(_spells.find(spell));
+	if (_spellbook.find(spellname) != _spellbook.end())
+		_spellbook.erase(_spellbook.find(spellname));
 }
 
-void Warlock::launchSpell(std::string spell, ATarget &target)
+void Warlock::launchSpell(std::string spellname, ATarget &target)
 {
-	if (_spells.find(spell) != _spells.end())
-		_spells[spell]->launch(target);
+	if (_spellbook.find(spellname) != _spellbook.end())
+		_spellbook[spellname]->launch(target);
 }
 

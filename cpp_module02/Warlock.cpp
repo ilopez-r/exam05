@@ -11,13 +11,17 @@ Warlock::Warlock(std::string name, std::string title)
 
 Warlock::Warlock(const Warlock &copy)
 {
-	*this = copy;
+	_name = copy._name;
+	_title = copy._name;
 }
 
-Warlock& Warlock::operator=(const Warlock &other)
+Warlock& Warlock::operator=(const Warlock &copy)
 {
-	_name = other._name;
-	_title = other._title;
+	if (this != &copy)
+	{
+		_name = copy._name;
+		_title = copy._name;
+	}
 	return (*this);
 }
 
@@ -48,17 +52,16 @@ void Warlock::introduce() const
 
 void Warlock::learnSpell(ASpell *spell)
 {
-	_spells.learnSpell(spell);
+	_spellbook.learnSpell(spell);
 }
 
-void Warlock::forgetSpell(std::string spell)
+void Warlock::forgetSpell(std::string spellname)
 {
-	_spells.forgetSpell(spell);
+	_spellbook.forgetSpell(spellname);;
 }
 
-void Warlock::launchSpell(std::string spell, ATarget &target)
+void Warlock::launchSpell(std::string spellname, ATarget &target)
 {
-	if (_spells.createSpell(spell))
-		_spells.createSpell(spell)->launch(target);
+	_spellbook.createSpell(spellname)->launch(target);
 }
 

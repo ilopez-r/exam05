@@ -9,12 +9,13 @@ ATarget::ATarget(std::string type)
 
 ATarget::ATarget(const ATarget &copy)
 {
-	*this = copy;
+	_type = copy._type;
 }
 
-ATarget& ATarget::operator=(const ATarget &other)
+ATarget& ATarget::operator=(const ATarget &copy)
 {
-	_type = other._type;
+	if (this != &copy)
+		_type = copy._type;
 	return (*this);
 }
 
@@ -29,3 +30,4 @@ void ATarget::getHitBySpell(const ASpell &spell) const
 {
 	std::cout << _type << " has been " << spell.getEffects() << "!\n";
 }
+

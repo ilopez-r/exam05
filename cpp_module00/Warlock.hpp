@@ -12,8 +12,8 @@ class Warlock
 		void introduce() const;
 	private:
 		Warlock();
-		Warlock(const Warlock& copy);
-		Warlock& operator=(const Warlock& other);
+		Warlock(const Warlock &copy);
+		Warlock& operator=(const Warlock &copy);
 		std::string _name;
 		std::string _title;
 };

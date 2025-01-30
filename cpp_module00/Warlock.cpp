@@ -9,15 +9,19 @@ Warlock::Warlock(std::string name, std::string title)
 	std::cout << _name << ": This looks like another boring day.\n";
 }
 
-Warlock::Warlock(const Warlock& copy)
+Warlock::Warlock(const Warlock &copy)
 {
-	*this = copy;
+	_name = copy._name;
+	_title = copy._name;
 }
 
-Warlock& Warlock::operator=(const Warlock& other)
+Warlock& Warlock::operator=(const Warlock &copy)
 {
-	_name = other._name;
-	_title = other._title;
+	if (this != &copy)
+	{
+		_name = copy._name;
+		_title = copy._name;
+	}
 	return (*this);
 }
 

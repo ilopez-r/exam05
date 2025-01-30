@@ -2,37 +2,34 @@
 
 TargetGenerator::TargetGenerator(){}
 
-
 TargetGenerator::TargetGenerator(const TargetGenerator &copy)
 {
-	*this = copy;
+	_targetbook = copy._targetbook;
 }
 
-TargetGenerator& TargetGenerator::operator=(const TargetGenerator &other)
+TargetGenerator& TargetGenerator::operator=(const TargetGenerator &copy)
 {
-	_targets = other._targets;
+	if (this != &copy) 
+		_targetbook = copy._targetbook;
 	return (*this);
 }
 
 TargetGenerator::~TargetGenerator(){}
 
-void TargetGenerator::learnTargetType(ATarget* target)
+void TargetGenerator::learnTargetType(ATarget *target)
 {
 	if (target)
-		_targets[target->getType()] = target;
+		_targetbook[target->getType()] = target;
 }
 
 void TargetGenerator::forgetTargetType(std::string const &target)
 {
-	if (_targets.find(target) != _targets.end())
-		_targets.erase(_targets.find(target));
+	if (_targetbook.find(target) != _targetbook.end())
+		_targetbook.erase(_targetbook.find(target));
 }
 
 ATarget* TargetGenerator::createTarget(std::string const &target)
 {
-	ATarget* tmp = NULL;
-	if (_targets.find(target) != _targets.end())
-		tmp = _targets[target];
-	return (tmp);
+	return (_targetbook[target]);
 }
 
