@@ -32,7 +32,7 @@ ATarget* TargetGenerator::createTarget(std::string const &target)
 {
 	ATarget* tmp = NULL;
 	if (_targetbook.find(target) != _targetbook.end())
-		tmp = _targetbook[target]
+		tmp = _targetbook[target];
 	return (tmp);
 }
 
