@@ -19,7 +19,7 @@ TargetGenerator::~TargetGenerator(){}
 void TargetGenerator::learnTargetType(ATarget *target)
 {
 	if (target)
-		_targetbook[target->getType()] = target;
+		_targetbook[target->getType()] = target->clone();
 }
 
 void TargetGenerator::forgetTargetType(std::string const &target)
@@ -30,6 +30,9 @@ void TargetGenerator::forgetTargetType(std::string const &target)
 
 ATarget* TargetGenerator::createTarget(std::string const &target)
 {
-	return (_targetbook[target]);
+	ATarget* tmp = NULL;
+	if (_targetbook.find(target) != _targetbook.end())
+		tmp = _targetbook[target]
+	return (tmp);
 }
 
